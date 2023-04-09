@@ -1,2 +1,13 @@
-<h1>Hello Rails!</h1>
+<h1 class="text-sky-500 font-bold text-xl p-4">Articles</h1>
 
+<div class="flex">
+    <div class="max-w-lg">
+        <% @articles.each do |article| %>
+            <div class="p-2 hover:bg-sky-900">
+                <a href="<%= article_path(article) %>">
+                    <%= article.title %>
+                </a>
+            </div>
+        <% end %>
+    </div>
+</div>

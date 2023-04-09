@@ -1,0 +1,11 @@
+
+
+<div class="max-w-lg shadow-md shadow-sky-600 mx-auto my-4 rounded-md overflow-hidden">
+    <h1 class="p-6 bg-slate-800 text-xl text-sky-400 font-bold"><%= @article.title %></h1>
+    <img src="https://cdn.pixabay.com/photo/2017/07/21/22/58/brown-hare-2527268_960_720.jpg" />
+    <p class="p-5"><%= @article.body %></p>
+    <div class="grid grid-cols-2 text-sm text-gray-600 p-5">
+        <span><%= @article.created_at %></span>
+        <span><%= @article.updated_at %></span>
+    </div>
+</div>
