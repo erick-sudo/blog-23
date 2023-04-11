@@ -1,12 +1,10 @@
 <h1 class="text-sky-500 font-bold text-xl p-4">Articles</h1>
-
+<div class="flex justify-end font-bold max-w-lg"><a href="/articles/new" class="bg-sky-500 px-4 py-2 rounded-md hover:ring-2 hover:ring-sky-500 hover:bg-slate-900">New Article</a></div>
 <div class="flex">
     <div class="max-w-lg">
         <% @articles.each do |article| %>
-            <div class="p-2 hover:bg-sky-900">
-                <a href="<%= article_path(article) %>">
-                    <%= article.title %>
-                </a>
+            <div class=" flex">
+                <a class="block w-full p-2 bg-slate-700/50 hover:bg-slate-900" href="<%= article_path(article) %>"><%= article.title %></a>
             </div>
         <% end %>
     </div>
