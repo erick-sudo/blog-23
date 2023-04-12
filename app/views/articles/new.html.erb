@@ -1,31 +1,38 @@
-<div class="bg-slate-800 shadow max-w-lg my-5 mx-auto flex flex-col rounded-md overflow-hidden shadow-lg shadow-black">
-    <h1 class="p-6 text-center text-sky-600 font-bold text-xl" >Create New Article</h1>
+<div class="bg-slate-700 shadow max-w-lg my-5 mx-auto flex flex-col overflow-hidden shadow-lg shadow-black">
+    <h1 class="p-6 text-center text-sky-600 font-bold text-xl bg-slate-800" >Create New Article</h1>
 
-    <form class="p-4 bg-slate-700" action="/articles" accept-charset="UTF-8" method="post">
+    <form class="p-4 bg-slate-700" action="/articles" accept-charset="UTF-8" method="post" enctype="multipart/form-data">
 
         <div class="my-1 flex flex-col p-2">
             <label for="article_title">Title</label>
-            <input class="p-2 outline-none bg-slate-800" type="text" name="title" value="<%= params[:title] %>" id="article_title">
+            <input class="p-2 outline-none bg-slate-800" type="text" name="article[title]" value="<%= params[:title] %>" id="article_title">
             <% @article.errors.full_messages_for(:title).each do |message| %>
                 <div class="text-red-600 text-[15px] bg-slate-900 px-2 font-bold"><%= message %></div>
             <% end %>
         </div>
 
         <div class="my-1 flex flex-col p-2">
+            <label class="bg-slate-900 w-max py-3 px-5 " for="article_avatar">Avatar</label>
+            <input class="p-2 outline-none bg-slate-800 hidden" type="file" name="article[avatar]" id="article_avatar">
+        </div>
+
+        <div class="my-1 flex flex-col p-2">
             <label class="" for="article_body">Body</label>
-            <textarea class="outline-none bg-slate-800 p-2 mt-0" rows="4" name="body" id="article_body"></textarea>
+            <textarea class="outline-none bg-slate-800 p-2 mt-0" rows="4" name="article[body]" id="article_body"></textarea>
             <% @article.errors.full_messages_for(:body).each do |message| %>
                 <div class="text-red-600 text-[15px] bg-slate-900 px-2 font-bold"><%= message %></div>
             <% end %>
         </div>
 
         <div class="my-1 flex flex-col p-2">
-            <label class="bg-slate-900 w-max py-3 px-5 rounded-md" for="article_posters">Add Posters</label>
-            <input class="p-2 outline-none bg-slate-800 hidden" type="file" name="images" id="article_posters">
+            <label class="bg-slate-900 w-max py-3 px-5 " for="article_posters">Add Posters</label>
+            <input name="article[posters][]" type="hidden" value="" autocomplete="off">
+            <input class="p-2 outline-none bg-slate-800 hidden" multiple="multiple" type="file" name="article[posters][]" id="article_posters">
         </div>
 
         <div class="flex justify-end mt-4">
-            <input class="bg-sky-600 py-1 px-4 rounded-md hover:ring-2 hover:ring-sky-600 hover:bg-slate-700" type="submit" value="Create Article" data-disable-with="Create Article">
+            <input class="bg-sky-600 py-1 px-4  hover:ring-2 hover:ring-sky-600 hover:bg-slate-700" type="submit" value="Create Article" data-disable-with="Create Article">
         </div>
     </form>
+    <div class=" flex"><a class="px-4 py-2 bg-slate-900 m-2" href="/articles">Articles</a></div>
 </div>

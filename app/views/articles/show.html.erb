@@ -1,11 +1,32 @@
-
-
-<div class="max-w-lg shadow-md shadow-sky-600 mx-auto my-4 rounded-md overflow-hidden">
+<div class="flex justify-end font-bold max-w-lg my-2"><a href="/articles" class="bg-sky-500 px-4 py-2  hover:ring-2 hover:ring-sky-500 hover:bg-slate-900">Articles</a></div>
+<style>
+    #posters::-webkit-scrollbar {
+        height: 0px;
+    }
+</style>
+<div class="max-w-lg mx-auto my-4  overflow-hidden bg-black ring-1">
     <h1 class="p-6 bg-slate-800 text-xl text-sky-400 font-bold"><%= @article.title %></h1>
-    <img src="https://cdn.pixabay.com/photo/2017/07/21/22/58/brown-hare-2527268_960_720.jpg" />
+    <div class=" mx-auto">
+        <% if @article.avatar.attached? %>
+            <img class="" src="<%= url_for(@article.avatar) %>" />
+        <% else %>
+            <img src="https://cdn.pixabay.com/photo/2021/01/22/18/09/windy-5940755__340.png" alt="Placeholder" />
+        <% end %>
+    </div>
     <p class="p-5"><%= @article.body %></p>
     <div class="grid grid-cols-2 text-sm text-gray-600 p-5">
         <span><%= @article.created_at %></span>
         <span><%= @article.updated_at %></span>
+    </div>
+    <div id="posters" class=" mx-auto my-2 flex overflow-x-scroll items-center px-3">
+        <% if @article.posters.attached? %>
+            <% @article.posters.each do |poster| %>
+            <div class="min-w-[300px] mr-2" >
+                <img class="" src="<%= url_for(poster) %>" />
+            </div>
+            <% end %>
+        <% else %>
+            <img src="https://cdn.pixabay.com/photo/2021/01/22/18/09/windy-5940755__340.png" alt="Placeholder" />
+        <% end %>
     </div>
 </div>

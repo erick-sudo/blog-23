@@ -78,3 +78,5 @@ gem "tailwindcss-rails", "~> 2.0"
 #  <%= hotwire_livereload_tags if Rails.env.development? %>
 # <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 gem "faker", "~> 3.1"
+
+gem "image_magick", "~> 0.1.9"

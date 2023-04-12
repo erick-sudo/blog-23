@@ -13,22 +13,31 @@ class ArticlesController < ApplicationController
         @article = Article.new
     end
 
+    def destroy
+        @article = Article.find(params[:id])
+        @article.destroy
+        render :index
+    end
+
     def create
-        @article = Article.new(article_params)
+        @article = Article.new({title: article_params[:title], body: article_params[:body]})
         if @article.save
+            if article_params[:avatar]
+                @article.avatar.attach(article_params[:avatar])
+            end
+            if article_params[:posters]
+                @article.posters.attach(article_params[:posters])
+            end
             redirect_to @article
         else
-            pp @article.errors.full_messages
             render :new, status: :unprocessable_entity
         end
-        # Article.create!(article_params)
-        # redirect_to @article
     end
 
     private
 
     def article_params
-        params.permit(:title, :body, :images)
+        params.require(:article).permit(:title, :body, :avatar, posters: [])
     end
 
     def invalid_record_response(invalid)
